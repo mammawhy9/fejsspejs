@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,7 +11,7 @@
  *
  * @author Piotrek
  */
-session_start();
+
 require 'include/Content.php';
 class Site {
     private $title;
