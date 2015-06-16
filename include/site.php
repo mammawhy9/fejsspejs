@@ -12,23 +12,38 @@
  * @author Piotrek
  */
 session_start();
-class site {
-    public $title;
-    public $user;
+require 'include/Content.php';
+class Site {
+    private $title;
+    private $user;
+    private $siteContent;
+    
+    public function __construct($content){
+        $this->siteContent= new Content();
+       if(count($content) ==  4){ 
+        $this->siteContent->head = $content['head'];
+        $this->siteContent->top = $content['top'];
+        $this->siteContent->mid = $content['mid'];
+        $this->siteContent->bottom = $content['bottom'];
+        }else{
+            echo "Brak zawartości  części strony!"; exit;
+        }
+    
+    }
     
     public function writeHead(){
-      echo "<html>    <head>        <meta charset='ISO-8859-2'>        <title></title>    </head>  <body>";
+     echo $this->siteContent->head;
     }
     
     public function writeTop(){
-        
+     echo $this->siteContent->top;   
     }
     
     public function writeMid(){
-        
+        echo $this->siteContent->mid;
     }
     public function writeBottom(){
-        echo "   </body> </html>";
+        echo $this->siteContent->bottom;
 
     }
     
