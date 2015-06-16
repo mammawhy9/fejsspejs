@@ -16,7 +16,7 @@
  * 
  */
 class Content {
-    public $head;
+    public  $head;
     public $top;
     public $mid;
     public $bottom;
