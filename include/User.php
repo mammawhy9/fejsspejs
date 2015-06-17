@@ -12,8 +12,16 @@
  * @author Piotrek
  */
 class User {
+    private $isLogged;
     //put your code here
-    public function logIn($login,$password){
+    public function __construct(){
+        if(isset($_SESSION['zalogowany'])){
+            $this->isLogged=$_SESSION['zalogowany'];
+        }
+    }
+    public function logIn(){
+      require 'base/connectDB.php';
+        
             
     }
     

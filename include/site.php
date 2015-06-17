@@ -15,7 +15,7 @@ session_start();
 require 'include/Content.php';
 class Site {
     private $title;
-    private $user;
+    public $user;
     private $siteContent;
     
     public function __construct($content){
@@ -29,6 +29,10 @@ class Site {
             echo "Brak zawarto¶ci  czê¶ci strony!"; exit;
         }
     
+    }
+    
+    public function __get($name) {
+        return $this->$name;
     }
     
     public function writeHead(){

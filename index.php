@@ -1,11 +1,22 @@
 <?php
+    
 $tablica= array('head' =>'k','top'=>'l','bottom' => 'o', 'mid' => 'm');
        require 'include/site.php';
-        $site= new site($tablica);
+       require 'include/User.php';
+        if(!isset($site)){
+            $site= new site($tablica);
+            $site->user= new User;
+        } 
+       
+          
+       
+        
+        
+        $site->user->logIn();
         $site->writeHead();
         $site->writeTop();
         $site->writeMid();
-        $site->writeBottom();
+        
         if (!isset($_SESSION)) { 
         $site->setSession();
         $site->addSession();
@@ -13,6 +24,7 @@ $tablica= array('head' =>'k','top'=>'l','bottom' => 'o', 'mid' => 'm');
         echo "<form action='login.php'>                     <button type='submit'/>            </form>";
         } else {
         echo "jest sesja!";
-}
+        $site->writeBottom();
+}       
 ?>
  
