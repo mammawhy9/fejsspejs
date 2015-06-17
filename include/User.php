@@ -36,6 +36,7 @@ class User {
     public function setSession(){
         if(!isset($_SESSION['active'])){
             $_SESSION['active']=1;
+            $_SESSION['logged']=false;
             
         }
     }

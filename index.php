@@ -6,20 +6,23 @@ $tablica= array('head' =>'k','top'=>'l','bottom' => 'o', 'mid' => 'm');
         if(!isset($site)){
             $site= new site($tablica);
             $site->user= new User;
+            $site->user->setSession();
         } 
-       
+       if($_SESSION['logged']){
+        $site->user->logIn();    
+       }
           
        
         
         
-        $site->user->logIn();
+        
         $site->writeHead();
         $site->writeTop();
         $site->writeMid();
         
         if (!isset($_SESSION)) { 
-        $site->setSession();
-        $site->addSession();
+        
+        
         echo $_SESSION['active'];
         echo "<form action='login.php'>                     <button type='submit'/>            </form>";
         } else {
