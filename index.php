@@ -11,11 +11,7 @@ $tablica= array('head' =>'k','top'=>'l','bottom' => 'o', 'mid' => 'm');
        if($_SESSION['logged']){
         $site->user->logIn();    
        }
-          
-       
-        
-        
-        
+
         $site->writeHead();
         $site->writeTop();
         $site->writeMid();
