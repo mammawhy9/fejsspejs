@@ -25,12 +25,13 @@ class User {
       require 'base/connectDB.php';
       $query="SELECT * FROM users WHERE login = '$this->login';";
       
-     foreach($userConnection->query("Select * from users;")as $row);{
-         echo $row['login']." ".$row['password'];
-     
-     
+      foreach($userConnection->query("Select * from users;")as $row){
+           echo $row['login']." ".$row['password'];
+          
            
-    }
+      }
+    
+     }
     
     public function setSession(){
         if(!isset($_SESSION['active'])){
