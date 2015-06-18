@@ -1,21 +1,40 @@
 <?php
     
-$tablica= array('head' =>'k','top'=>'l','bottom' => 'o', 'mid' => 'm');
+$tablica= array('head' =>'<html><head><title></title></head>','top'=>'<div class="top">To jest top</div>','bottom' => '
+</script><div class="bottom">To jest bottom</div>', 'mid' => '<div class="mid">To jest mid</div>');
        require 'include/site.php';
-       require 'include/User.php';
+
         if(!isset($site)){
             $site= new site($tablica);
-            $site->user= new User;
-            $site->user->setSession();
+            $site->setSession();
+            
+            
         } 
-       if($_SESSION['logged']){
-        $site->user->logIn();    
-       }
 
         $site->writeHead();
         $site->writeTop();
         $site->writeMid();
-        
+        echo var_dump($_SESSION);
+        if($_SESSION['logged']==false){
+            require('include/USer.php');
+            $site->user= new User;
+            $site->writeLoginForm();
+            if(isset($_POST['login'])&&isset($_POST['password'])){
+            $site->user->logIn($_POST['login'],$_POST['password']);
+            header("Location: index.php");
+            }
+    
+        }else{
+            echo "zalogowany\n";
+           echo "<form action='index.php'> <input type='hidden' value='true' name='logout'/>                    <button type='submit'>Wyloguj</button>            </form>";
+            
+        }
+        echo (int)$_SESSION['logged'];
+   
+        if($_GET['logout']==true){
+               $site->endSession();
+               header("Location: index.php");
+          }
         if (!isset($_SESSION)) { 
         
         
@@ -25,5 +44,5 @@ $tablica= array('head' =>'k','top'=>'l','bottom' => 'o', 'mid' => 'm');
         echo "jest sesja!";
         $site->writeBottom();
 }       
-?>
+
  

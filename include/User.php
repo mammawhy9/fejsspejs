@@ -15,30 +15,26 @@ class User {
     private $isLogged;
     private $login;
     //put your code here
-    public function __construct($login='spiety'){
-        $this->login=$login;
+    public function __construct(){
+        
         if(isset($_SESSION['active'])){
             $this->isLogged=$_SESSION['active'];
         }
     }
-    public function logIn(){
+    
+    public function logIn($login,$password){
       require 'base/connectDB.php';
-      $query="SELECT * FROM users WHERE login = '$this->login';";
-      
-      foreach($userConnection->query("Select * from users;")as $row){
-           echo $row['login']." ".$row['password'];
-          
+      $query="SELECT count(*) FROM users WHERE login = '$login' and password='$password' ;";
+      echo $query;
+      foreach($userConnection->query($query)as $row){
+          if($row['count(*)']){
+              $_SESSION['logged']=true;
+          }
            
       }
     
      }
     
-    public function setSession(){
-        if(!isset($_SESSION['active'])){
-            $_SESSION['active']=1;
-            $_SESSION['logged']=false;
-            
-        }
-    }
+   
     
 }

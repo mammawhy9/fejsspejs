@@ -50,8 +50,25 @@ class Site {
         echo $this->siteContent->bottom;
 
     }
-    
+    public function writeLoginForm(){
+        echo "<form method='post' action='index.php'>"
+        . "<input type='text' name='login'/><br/>"
+        ."<input type='password' name='password'/><br/>"
+                ."<input type='submit'/></form>";
+        
 
+    }
+    
+     public function setSession(){
+        if(!isset($_SESSION['active'])){
+            $_SESSION['active']=1;
+            $_SESSION['logged']=false;
+            
+        }
+    }
+    public function endSession(){
+         session_destroy();
+    }
     public function addSession(){
         if(isset($_SESSION['active'])){
             $_SESSION['active']++;
